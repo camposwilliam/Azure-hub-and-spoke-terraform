@@ -9,6 +9,15 @@ https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/hyb
 
 ```hcl
 
+terraform {
+  required_providers {
+    azurerm = {
+      source = "hashicorp/azurerm"
+      version = "3.37.0"
+    }
+  }
+}
+
 provider "azurerm" {
   features {}
 }
@@ -42,6 +51,19 @@ module "hubandspoke" {
    subnet-workload-spoke = "subnet-workload"
    address_space_subnet_workload-spoke = ["10.1.1.0/24"]
    nsg-name-spoke = "nsg-spoke1-workload"
+
+ ### VRITUAL NETWORK GATEWAY ####
+
+  create_virtual_network_gateway = true
+  create_public_ip_vpn = true
+
+  public_ip_vpn_name = "hub-vpn-gateway1-pip"
+  virtual_network_gateway_name= "hub-vpn-gateway1"
+  type = "Vpn"
+  vpn_type = "RouteBased"
+  active_active = false
+  enable_bgp = false
+  sku = "VpnGw1"
 
 }
 ```

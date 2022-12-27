@@ -48,32 +48,33 @@ resource "azurerm_subnet_network_security_group_association" "association-prd" {
   network_security_group_id = azurerm_network_security_group.nsg-prd.id
 }
 
-# Virtual Network Gateway
-# resource "azurerm_public_ip" "hub-vpn-gateway1-pip" {
-#   name                = "hub-vpn-gateway1-pip"
-#   location            = azurerm_resource_group.hub-vnet-rg.location
-#   resource_group_name = azurerm_resource_group.hub-vnet-rg.name
+resource "azurerm_public_ip" "hub-vpn-gateway1-pip" {
+  count               = var.create_public_ip_vpn ? 1 : 0
+  name                = var.public_ip_vpn_name
+  location            = azurerm_resource_group.hub-vnet-rg.location
+  resource_group_name = azurerm_resource_group.hub-vnet-rg.name
 
-#   allocation_method = "Dynamic"
-# }
+  allocation_method = "Dynamic"
+}
 
-# resource "azurerm_virtual_network_gateway" "hub-vnet-gateway" {
-#   name                = "hub-vpn-gateway1"
-#   location            = azurerm_resource_group.hub-vnet-rg.location
-#   resource_group_name = azurerm_resource_group.hub-vnet-rg.name
+resource "azurerm_virtual_network_gateway" "hub-vnet-gateway" {
+  count               = var.create_virtual_network_gateway ? 1 : 0
+  name                = var.virtual_network_gateway_name
+  location            = azurerm_resource_group.hub-vnet-rg.location
+  resource_group_name = azurerm_resource_group.hub-vnet-rg.name
 
-#   type     = "Vpn"
-#   vpn_type = "RouteBased"
+  type     = var.type
+  vpn_type = var.vpn_type
 
-#   active_active = false
-#   enable_bgp    = false
-#   sku           = "VpnGw1"
+  active_active = var.active_active
+  enable_bgp    = var.enable_bgp
+  sku           = var.sku
 
-#   ip_configuration {
-#     name                          = "vnetGatewayConfig"
-#     public_ip_address_id          = azurerm_public_ip.hub-vpn-gateway1-pip.id
-#     private_ip_address_allocation = "Dynamic"
-#     subnet_id                     = azurerm_subnet.hub-gateway-subnet.id
-#   }
-#   depends_on = [azurerm_public_ip.hub-vpn-gateway1-pip]
-# }
+  ip_configuration {
+    name                          = "vnetGatewayConfig"
+    public_ip_address_id          = azurerm_public_ip.hub-vpn-gateway1-pip[count.index].id
+    private_ip_address_allocation = "Dynamic"
+    subnet_id                     = azurerm_subnet.hub-gateway-subnet.id
+  }
+  depends_on = [azurerm_public_ip.hub-vpn-gateway1-pip]
+}

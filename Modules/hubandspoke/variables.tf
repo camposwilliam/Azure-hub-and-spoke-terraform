@@ -73,3 +73,44 @@ variable "address_space_subnet_workload-spoke" {
 variable "nsg-name-spoke" {
   type = string
 }
+
+variable "create_virtual_network_gateway" {
+  type    = bool
+  default = false
+}
+
+variable "create_public_ip_vpn" {
+  type    = bool
+  default = false
+}
+
+
+variable "virtual_network_gateway_name" {
+  type = string
+}
+
+
+variable "type" {
+  type = string
+}
+
+variable "vpn_type" {
+  type = string
+}
+
+variable "active_active" {
+  type = string
+}
+
+variable "enable_bgp" {
+  type = string
+}
+
+variable "sku" {
+  type = string
+}
+
+variable "public_ip_vpn_name" {
+  type = string
+}
+
