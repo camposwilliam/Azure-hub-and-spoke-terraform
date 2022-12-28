@@ -31,7 +31,7 @@ module "hubandspoke" {
 
 #### HUB RESOURCES ###
 
-   source = "./Modules/hubandspoke"
+   source = "./modules/hubandspoke"
    resource-group-hub = "rg-prod-hub"
    namevnet-hub = "vnet-hub-prod"
    address_space_vnet-hub = ["10.0.0.0/16"]
