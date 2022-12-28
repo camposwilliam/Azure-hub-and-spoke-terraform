@@ -99,11 +99,13 @@ variable "vpn_type" {
 }
 
 variable "active_active" {
-  type = string
+  type    = bool
+  default = false
 }
 
 variable "enable_bgp" {
-  type = string
+  type    = bool
+  default = false
 }
 
 variable "sku" {
