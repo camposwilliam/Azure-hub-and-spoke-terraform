@@ -1,7 +1,7 @@
 resource "azurerm_resource_group" "hub-vnet-rg" {
   name     = var.resource-group-hub
   location = var.location
-  tags = var.tags
+  tags     = var.tags
 }
 
 resource "azurerm_virtual_network" "hub-vnet" {

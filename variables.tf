@@ -9,7 +9,7 @@ variable "location" {
 }
 
 variable "tags" {
-  type = map
+  type = map(any)
 }
 
 variable "namevnet-hub" {
@@ -17,7 +17,7 @@ variable "namevnet-hub" {
 }
 
 variable "address_space_vnet-hub" {
-  type = list
+  type = list(any)
 }
 
 variable "namesubnetgateway-hub" {
@@ -25,7 +25,7 @@ variable "namesubnetgateway-hub" {
 }
 
 variable "address_space_subnetgateway-hub" {
-  type = list
+  type = list(any)
 }
 
 variable "namesubnetprod-hub" {
@@ -33,7 +33,7 @@ variable "namesubnetprod-hub" {
 }
 
 variable "address_space_subnetprod-hub" {
-  type = list
+  type = list(any)
 }
 
 variable "nsg-name-hub" {
@@ -51,7 +51,7 @@ variable "namevnet-spoke" {
 }
 
 variable "address_space_spoke1_vnet-spoke" {
-  type = list
+  type = list(any)
 }
 
 variable "subnet-mgmt-spoke" {
@@ -59,7 +59,7 @@ variable "subnet-mgmt-spoke" {
 }
 
 variable "address_space_subnet_mgmt-spoke" {
-  type = list
+  type = list(any)
 }
 
 variable "subnet-workload-spoke" {
@@ -67,7 +67,7 @@ variable "subnet-workload-spoke" {
 }
 
 variable "address_space_subnet_workload-spoke" {
-  type = list
+  type = list(any)
 }
 
 variable "nsg-name-spoke" {
@@ -115,4 +115,3 @@ variable "sku" {
 variable "public_ip_vpn_name" {
   type = string
 }
-

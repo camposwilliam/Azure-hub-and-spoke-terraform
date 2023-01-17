@@ -1,7 +1,7 @@
 resource "azurerm_resource_group" "spoke1-vnet-rg" {
   name     = var.resource-group-spoke
   location = var.location
-  tags = var.tags
+  tags     = var.tags
 }
 
 resource "azurerm_virtual_network" "spoke1-vnet" {
