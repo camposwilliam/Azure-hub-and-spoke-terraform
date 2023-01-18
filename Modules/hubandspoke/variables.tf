@@ -40,7 +40,37 @@ variable "nsg-name-hub" {
   type = string
 }
 
+variable "local-network-gateway-nane" {
+  type = string
+}
+
+variable "local-gateway-address" {
+  type = string
+}
+
+variable "local-address-space" {
+  type = list(any)
+}
+
+variable "connection-name" {
+  type = string
+}
+
+variable "type-connection" {
+  type = string
+}
+
+variable "shared-key-connection" {
+  type = string
+}
+
+
 ### VARIABLES RESOURCES SPOKE ###
+
+variable "create-resources-spoke" {
+  type    = bool
+  default = false
+}
 
 variable "resource-group-spoke" {
   type = string
@@ -111,5 +141,9 @@ variable "sku" {
 }
 
 variable "public_ip_vpn_name" {
+  type = string
+}
+
+variable "use-remote-gateways" {
   type = string
 }
