@@ -40,7 +40,7 @@ module "hubandspoke" {
   subnet-workload-spoke               = "subnet-workload"
   address_space_subnet_workload-spoke = ["10.1.1.0/24"]
   nsg-name-spoke                      = "nsg-spoke1-workload"
-  use-remote-gateways = false
+  use-remote-gateways                 = false
 
   ### VRITUAL NETWORK GATEWAY ####
 
@@ -59,13 +59,13 @@ module "hubandspoke" {
 
 
   local-network-gateway-nane = "datacenter01"
-  local-gateway-address = "168.62.225.23"
-  local-address-space = ["10.99.1.0/24"]
+  local-gateway-address      = "168.62.225.23"
+  local-address-space        = ["10.99.1.0/24"]
 
   ### CONNECTION  ####
 
-  connection-name = "connection01"
-  type-connection = "IPsec"
+  connection-name       = "connection01"
+  type-connection       = "IPsec"
   shared-key-connection = "4-v3ry-53cr37-1p53c-5h4r3d-k3y"
 
 }
